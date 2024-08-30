@@ -13,7 +13,7 @@
 
 - 🌱 I’m currently learning GDSE - Graduate Diploma in Software Engineering
 
-- 💬 Ask me about anything, In OOP, SQL.
+- 💬 Ask me about anything, In OOP, SQL, Springboot, Java.
   
 - 📫 How to reach me **kavind11250403@gmail.com**
 
