@@ -48,7 +48,3 @@
 <img  src="https://github-readme-stats.vercel.app/api/top-langs/?username=kavindumal&theme=tokyonight&hide_progress=true" />
 <br>
 </div>
-<p align="center">
-  <img src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=kavindumal&theme=tokyonight" />
-<br> 
-<p>
