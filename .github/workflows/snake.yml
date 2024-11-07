@@ -1,17 +1,18 @@
-# GitHub Action for generating a contribution graph styled like a Tetris game.
+# GitHub Action for generating a contribution graph with a snake eating your contributions.
 
-name: Generate Tetris
+name: Generate Snake
 
 # Controls when the action will run. This action runs every 24 hours.
+
 on:
   schedule:
-    # Every 24 hours at 7:17 AM
+    # every 24 hours at 7:17 Uhr
     - cron: "17 7 * * *"
 
-  # This command allows us to run the Action manually from the Actions tab.
+  # This command allows us to run the Action automatically from the Actions tab.
   workflow_dispatch:
 
-  # Triggers on changes to the main branch
+  # On changes
   push:
     branches:
       - main
@@ -25,32 +26,31 @@ jobs:
     permissions:
       contents: write
     timeout-minutes: 5
-    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
-      # Checks out the repository under $GITHUB_WORKSHOP
+      # Checks repo under $GITHUB_WORKSHOP, so your job can access it
       - uses: actions/checkout@v2
 
-      # Generates the Tetris animation
-      - name: Generate Tetris Contribution Graph
-        uses: username/tetris-contribution-graph@v1
-        id: tetris-animation
+      # Generates the snake
+      - uses: Platane/snk/svg-only@v3
+        id: snake-gif
         with:
           github_user_name: ${{ github.repository_owner }}
-          output_dir: dist
-          theme: modern
-          color_palette: "blue,green,orange,purple"
+          # these next 2 lines generate the files on a branch called "output". This keeps the main branch from cluttering up.
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Show the status of the build for debugging purposes
+      # show the status of the build. Makes it easier for debugging (if there's any issues).
       - run: git status
 
       # Push the images to the output branch
       - uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
-          # Specify the output branch
+          # the output branch we mentioned above
           target_branch: output
           build_dir: dist
         env:
